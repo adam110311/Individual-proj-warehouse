@@ -1,10 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ya boy\\source\\repos\\Warehouse\\Warehouse-wpf\\",
+  "WorkspaceRootPath": "C:\\Users\\ya boy\\source\\repos\\Warehouse\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A6F1DB5E-5A2C-43B5-B8AF-14692647C4ED}|WpfApp1\\WpfApp1.csproj|c:\\users\\ya boy\\source\\repos\\warehouse\\warehouse-wpf\\wpfapp1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6F1DB5E-5A2C-43B5-B8AF-14692647C4ED}|WpfApp1\\WpfApp1.csproj|solutionrelative:wpfapp1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A6F1DB5E-5A2C-43B5-B8AF-14692647C4ED}|WpfApp1\\WpfApp1.csproj|c:\\users\\ya boy\\source\\repos\\warehouse\\wpfapp1\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A6F1DB5E-5A2C-43B5-B8AF-14692647C4ED}|WpfApp1\\WpfApp1.csproj|solutionrelative:wpfapp1\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A6F1DB5E-5A2C-43B5-B8AF-14692647C4ED}|WpfApp1\\WpfApp1.csproj|c:\\users\\ya boy\\source\\repos\\warehouse\\wpfapp1\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A6F1DB5E-5A2C-43B5-B8AF-14692647C4ED}|WpfApp1\\WpfApp1.csproj|solutionrelative:wpfapp1\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,14 +51,26 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\ya boy\\source\\repos\\Warehouse\\Warehouse-wpf\\WpfApp1\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "WpfApp1\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\ya boy\\source\\repos\\Warehouse\\Warehouse-wpf\\WpfApp1\\MainWindow.xaml.cs",
-              "RelativeToolTip": "WpfApp1\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-17T11:44:14.157Z",
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\ya boy\\source\\repos\\Warehouse\\WpfApp1\\App.xaml",
+              "RelativeDocumentMoniker": "WpfApp1\\App.xaml",
+              "ToolTip": "C:\\Users\\ya boy\\source\\repos\\Warehouse\\WpfApp1\\App.xaml",
+              "RelativeToolTip": "WpfApp1\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-17T12:19:03.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\ya boy\\source\\repos\\Warehouse\\WpfApp1\\appsettings.json",
+              "RelativeDocumentMoniker": "WpfApp1\\appsettings.json",
+              "ToolTip": "C:\\Users\\ya boy\\source\\repos\\Warehouse\\WpfApp1\\appsettings.json",
+              "RelativeToolTip": "WpfApp1\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-17T11:56:06.126Z",
               "EditorCaption": ""
             }
           ]
