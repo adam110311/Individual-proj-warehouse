@@ -55,3 +55,4 @@ nunit-*.xml
 /.vs
 /.vs
 /WpfApp1/appsettings.json
+/Warehouse-SOLID/.vs
