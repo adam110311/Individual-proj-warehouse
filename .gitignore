@@ -56,3 +56,4 @@ nunit-*.xml
 /.vs
 /WpfApp1/appsettings.json
 /Warehouse-SOLID/.vs
+/Warehouse-SolidP/.vs
