@@ -1,0 +1,55 @@
+@model List<Item>
+@{
+    ViewData["Title"] = "Inventory";
+}
+
+<h4 class="mb-4">Inventory</h4>
+
+@if (Model.Any())
+{
+    <p class="text-muted small mb-3">@Model.Count items</p>
+
+    <table class="table table-sm table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Serial Number</th>
+                <th>Status</th>
+                <th>Registered</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.I_ID</td>
+                    <td>@item.Name</td>
+                    <td>@item.Brand</td>
+                    <td>@item.CategoryName</td>
+                    <td><code>@item.SerialNumber</code></td>
+                    <td>
+                        @{
+                            var badgeClass = item.Status switch
+                            {
+                                "In Stock"   => "bg-success",
+                                "Dispatched" => "bg-secondary",
+                                "Defective"  => "bg-danger",
+                                "Pending"    => "bg-warning text-dark",
+                                _            => "bg-light text-dark"
+                            };
+                        }
+                        <span class="badge @badgeClass">@item.Status</span>
+                    </td>
+                    <td>@item.DateRegistered.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-muted">No items in inventory yet.</p>
+}
