@@ -14,6 +14,11 @@ public partial class App : Application
 {
     public static IServiceProvider Services { get; private set; } = null!;
 
+    /// <summary>
+    /// Set after successful login so order creation can reference the current user.
+    /// </summary>
+    public static int CurrentUserId { get; set; }
+
     protected override void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
@@ -27,10 +32,13 @@ public partial class App : Application
         services.AddTransient<IUserRepository, UserRepository>();
         services.AddTransient<ICategoryRepository, CategoryRepository>();
         services.AddTransient<IItemRepository, ItemRepository>();
+        services.AddTransient<IOrderRepository, OrderRepository>();
 
         services.AddTransient<LoginViewModel>();
         services.AddTransient<InventoryViewModel>();
         services.AddTransient<ItemFormViewModel>();
+        services.AddTransient<OrderListViewModel>();
+        services.AddTransient<OrderFormViewModel>();
 
         Services = services.BuildServiceProvider();
 

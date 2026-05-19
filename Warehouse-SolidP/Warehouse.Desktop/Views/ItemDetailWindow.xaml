@@ -1,0 +1,48 @@
+<Window x:Class="Warehouse.Desktop.Views.ItemDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Item Detail"
+        Width="420" Height="320"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="ID" FontWeight="SemiBold" Margin="0,0,0,6"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding I_ID}" Margin="0,0,0,6"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Name" FontWeight="SemiBold" Margin="0,0,0,6"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Name}" Margin="0,0,0,6"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Brand" FontWeight="SemiBold" Margin="0,0,0,6"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Brand}" Margin="0,0,0,6"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Serial Number" FontWeight="SemiBold" Margin="0,0,0,6"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding SerialNumber}" Margin="0,0,0,6"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Category" FontWeight="SemiBold" Margin="0,0,0,6"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding CategoryName}" Margin="0,0,0,6"/>
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Status" FontWeight="SemiBold" Margin="0,0,0,6"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Status}" Margin="0,0,0,6"/>
+
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Registered" FontWeight="SemiBold" Margin="0,0,0,6"/>
+        <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding DateRegistered, StringFormat=yyyy-MM-dd HH:mm}" Margin="0,0,0,6"/>
+
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Description" FontWeight="SemiBold" Margin="0,0,0,6" VerticalAlignment="Top"/>
+        <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding Description}" TextWrapping="Wrap" Margin="0,0,0,6"/>
+    </Grid>
+</Window>

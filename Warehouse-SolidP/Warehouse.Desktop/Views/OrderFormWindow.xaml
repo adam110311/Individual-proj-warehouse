@@ -1,0 +1,113 @@
+<Window x:Class="Warehouse.Desktop.Views.OrderFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="New Order"
+        Width="700" Height="550"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Order type + reference -->
+        <Grid Grid.Row="0" Margin="0,0,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Type:" VerticalAlignment="Center"/>
+            <ComboBox Grid.Column="1" ItemsSource="{Binding OrderTypes}" SelectedItem="{Binding OrderType}" Padding="4"/>
+            <TextBlock Grid.Column="2" Text="Reference:" VerticalAlignment="Center" Margin="8,0,4,0"/>
+            <TextBox Grid.Column="3" Text="{Binding Reference, UpdateSourceTrigger=PropertyChanged}" Padding="4"/>
+        </Grid>
+
+        <!-- Add items section -->
+        <GroupBox Grid.Row="1" Header="Add Item" Margin="0,0,0,8">
+            <StackPanel Margin="6">
+                <!-- Inbound: manual entry fields -->
+                <Grid Margin="0,0,0,4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Text="{Binding NewItemName, UpdateSourceTrigger=PropertyChanged}"
+                             Padding="4" Margin="0,0,4,0" ToolTip="Name"/>
+                    <TextBox Grid.Column="1" Text="{Binding NewItemBrand, UpdateSourceTrigger=PropertyChanged}"
+                             Padding="4" Margin="0,0,4,0" ToolTip="Brand"/>
+                    <TextBox Grid.Column="2" Text="{Binding NewItemSerial, UpdateSourceTrigger=PropertyChanged}"
+                             Padding="4" Margin="0,0,4,0" ToolTip="Serial number"/>
+                    <ComboBox Grid.Column="3" ItemsSource="{Binding Categories}" SelectedItem="{Binding NewItemCategory}"
+                              Padding="4" ToolTip="Category"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Text="{Binding NewItemDescription, UpdateSourceTrigger=PropertyChanged}"
+                             Padding="4" Margin="0,0,4,0" ToolTip="Description (optional)"/>
+                    <Button Grid.Column="1" Content="Add (Inbound)" Command="{Binding AddInboundItemCommand}" Padding="10,4"/>
+                </Grid>
+
+                <!-- Outbound: pick from existing -->
+                <Grid Margin="0,6,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox Grid.Column="0" ItemsSource="{Binding AvailableItems}" SelectedItem="{Binding SelectedAvailableItem}"
+                              Padding="4" Margin="0,0,4,0" DisplayMemberPath="Name" ToolTip="Select existing item (outbound)"/>
+                    <Button Grid.Column="1" Content="Add (Outbound)" Command="{Binding AddOutboundItemCommand}" Padding="10,4"/>
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Order items list -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Grid.Column="0"
+                      ItemsSource="{Binding OrderItems}"
+                      SelectedItem="{Binding SelectedOrderItem}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      SelectionMode="Single"
+                      HeadersVisibility="Column"
+                      GridLinesVisibility="Horizontal">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name"     Binding="{Binding Name}"          Width="*"/>
+                    <DataGridTextColumn Header="Brand"    Binding="{Binding Brand}"         Width="90"/>
+                    <DataGridTextColumn Header="Serial"   Binding="{Binding SerialNumber}"  Width="130"/>
+                    <DataGridTextColumn Header="Category" Binding="{Binding CategoryName}"  Width="100"/>
+                    <DataGridTextColumn Header="Status"   Binding="{Binding Status}"        Width="80"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Grid.Column="1" Margin="8,0,0,0" VerticalAlignment="Top">
+                <Button Content="Remove" Command="{Binding RemoveItemCommand}" Padding="8,4"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Error -->
+        <TextBlock Grid.Row="3" Text="{Binding ErrorMessage}" Foreground="Red" FontSize="12"
+                   TextWrapping="Wrap" Margin="0,8,0,4"/>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Cancel" Padding="16,6" Margin="0,0,8,0" IsCancel="True"/>
+            <Button Content="Save" Padding="16,6" Command="{Binding SaveCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>

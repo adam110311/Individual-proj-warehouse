@@ -13,18 +13,10 @@ public partial class LoginViewModel : ObservableObject
         _userRepository = userRepository;
     }
 
-    [ObservableProperty]
-    private string _email = string.Empty;
+    [ObservableProperty] private string _email = string.Empty;
+    [ObservableProperty] private string _errorMessage = string.Empty;
+    [ObservableProperty] private bool _isLoggingIn;
 
-    [ObservableProperty]
-    private string _errorMessage = string.Empty;
-
-    [ObservableProperty]
-    private bool _isLoggingIn;
-
-    /// <summary>
-    /// Fired when login succeeds. The View subscribes to this to handle window navigation.
-    /// </summary>
     public event Action? LoginSucceeded;
 
     [RelayCommand]
@@ -50,6 +42,7 @@ public partial class LoginViewModel : ObservableObject
                 return;
             }
 
+            App.CurrentUserId = user.U_ID;
             LoginSucceeded?.Invoke();
         }
         catch (Exception ex)
