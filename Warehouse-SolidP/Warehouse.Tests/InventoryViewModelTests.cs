@@ -31,7 +31,7 @@ public class InventoryViewModelTests
             .Setup(r => r.GetAllAsync())
             .ReturnsAsync(items);
 
-        await _viewModel.LoadItemsCommand.ExecuteAsync(null);
+        await _viewModel.LoadCommand.ExecuteAsync(null);
 
         Assert.Equal(3, _viewModel.Items.Count);
         Assert.Equal("Latitude 5520", _viewModel.Items[0].Name);
@@ -47,7 +47,7 @@ public class InventoryViewModelTests
                 new() { I_ID = 1, Name = "Test Item", SerialNumber = "T-001" }
             });
 
-        await _viewModel.LoadItemsCommand.ExecuteAsync(null);
+        await _viewModel.LoadCommand.ExecuteAsync(null);
 
         Assert.Equal("1 items", _viewModel.StatusMessage);
     }
@@ -59,7 +59,7 @@ public class InventoryViewModelTests
             .Setup(r => r.GetAllAsync())
             .ReturnsAsync(new List<Item>());
 
-        await _viewModel.LoadItemsCommand.ExecuteAsync(null);
+        await _viewModel.LoadCommand.ExecuteAsync(null);
 
         Assert.Empty(_viewModel.Items);
         Assert.Equal("0 items", _viewModel.StatusMessage);
@@ -72,7 +72,7 @@ public class InventoryViewModelTests
             .Setup(r => r.GetAllAsync())
             .ThrowsAsync(new Exception("Connection refused"));
 
-        await _viewModel.LoadItemsCommand.ExecuteAsync(null);
+        await _viewModel.LoadCommand.ExecuteAsync(null);
 
         Assert.Contains("Failed to load items", _viewModel.StatusMessage);
         Assert.Contains("Connection refused", _viewModel.StatusMessage);
@@ -90,7 +90,7 @@ public class InventoryViewModelTests
                 new() { I_ID = 2, Name = "Item B", SerialNumber = "B-001" }
             });
 
-        await _viewModel.LoadItemsCommand.ExecuteAsync(null);
+        await _viewModel.LoadCommand.ExecuteAsync(null);
         Assert.Equal(2, _viewModel.Items.Count);
 
         // Second load with different data
@@ -101,7 +101,7 @@ public class InventoryViewModelTests
                 new() { I_ID = 3, Name = "Item C", SerialNumber = "C-001" }
             });
 
-        await _viewModel.LoadItemsCommand.ExecuteAsync(null);
+        await _viewModel.LoadCommand.ExecuteAsync(null);
         Assert.Single(_viewModel.Items);
         Assert.Equal("Item C", _viewModel.Items[0].Name);
     }
