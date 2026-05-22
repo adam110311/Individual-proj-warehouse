@@ -9,12 +9,14 @@ namespace Warehouse.Tests;
 public class InventoryViewModelTests
 {
     private readonly Mock<IItemRepository> _mockItemRepo;
+    private readonly Mock<ICategoryRepository> _mockCategoryRepo;
     private readonly InventoryViewModel _viewModel;
 
     public InventoryViewModelTests()
     {
         _mockItemRepo = new Mock<IItemRepository>();
-        _viewModel = new InventoryViewModel(_mockItemRepo.Object);
+        _mockCategoryRepo = new Mock<ICategoryRepository>();
+        _viewModel = new InventoryViewModel(_mockItemRepo.Object, _mockCategoryRepo.Object);
     }
 
     [Fact]

@@ -1,0 +1,126 @@
+@model Warehouse.Web.ViewModels.AnalyticsViewModel
+@{
+    ViewData["Title"] = "Analytics";
+}
+
+<h4 class="mb-4">Analytics</h4>
+
+@if (!Model.HasOrderHistory)
+{
+    <div class="alert alert-info">
+        No completed outbound orders yet. Analytics will appear once orders have been completed and dispatched.
+    </div>
+}
+else
+{
+    <p class="text-muted small mb-4">
+        Based on @Model.TotalCompletedOrders completed outbound order(s).
+    </p>
+
+    <!-- Most Dispatched Categories -->
+    <h5 class="mb-3">Most Dispatched Categories</h5>
+    <p class="text-muted small">
+        Categories ranked by total items dispatched across all completed outbound orders,
+        with the average number of items per order.
+    </p>
+
+    <table class="table table-sm table-striped mb-5" style="max-width: 700px;">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Category</th>
+                <th class="text-end">Total Dispatched</th>
+                <th class="text-end">Avg. per Order</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var rank = 1; }
+            @foreach (var stat in Model.DispatchStats)
+            {
+                <tr>
+                    <td>@rank</td>
+                    <td>@stat.CategoryName</td>
+                    <td class="text-end">@stat.TotalDispatched</td>
+                    <td class="text-end">@stat.AveragePerOrder</td>
+                </tr>
+                rank++;
+            }
+        </tbody>
+    </table>
+
+    <!-- Stock Depletion Estimates -->
+    <h5 class="mb-3">Stock Depletion Estimates</h5>
+    <p class="text-muted small">
+        Estimated days until each category runs out of stock, based on the average monthly dispatch rate.
+        Categories with no dispatch history are excluded from time estimates.
+    </p>
+
+    <table class="table table-sm table-striped" style="max-width: 900px;">
+        <thead class="table-dark">
+            <tr>
+                <th>Category</th>
+                <th class="text-end">In Stock</th>
+                <th class="text-end">Monthly Dispatch Rate</th>
+                <th class="text-end">Est. Days Remaining</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var est in Model.DepletionEstimates)
+            {
+                var rowClass = est.Urgency switch
+                {
+                    "Critical" => "table-danger",
+                    "Low" => "table-warning",
+                    _ => ""
+                };
+                <tr class="@rowClass">
+                    <td>@est.CategoryName</td>
+                    <td class="text-end">@est.CurrentInStock</td>
+                    <td class="text-end">@est.MonthlyDispatchRate / month</td>
+                    <td class="text-end">
+                        @if (est.EstimatedDaysUntilEmpty.HasValue)
+                        {
+                            @est.EstimatedDaysUntilEmpty <text>days</text>
+                        }
+                        else
+                        {
+                            <span class="text-muted">-</span>
+                        }
+                    </td>
+                    <td>
+                        @{
+                            var badgeClass = est.Urgency switch
+                            {
+                                "Critical" => "bg-danger",
+                                "Low" => "bg-warning text-dark",
+                                "Adequate" => "bg-info text-dark",
+                                "Comfortable" => "bg-success",
+                                _ => "bg-secondary"
+                            };
+                        }
+                        <span class="badge @badgeClass">@est.Urgency</span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="card mt-3" style="max-width: 700px;">
+        <div class="card-body">
+            <h6 class="card-title">How to read this</h6>
+            <p class="card-text small mb-1">
+                <span class="badge bg-danger">Critical</span> Less than 7 days of stock remaining at current dispatch rates.
+            </p>
+            <p class="card-text small mb-1">
+                <span class="badge bg-warning text-dark">Low</span> Less than 30 days of stock remaining.
+            </p>
+            <p class="card-text small mb-1">
+                <span class="badge bg-info text-dark">Adequate</span> 30 to 90 days of stock remaining.
+            </p>
+            <p class="card-text small mb-0">
+                <span class="badge bg-success">Comfortable</span> More than 90 days of stock remaining.
+            </p>
+        </div>
+    </div>
+}

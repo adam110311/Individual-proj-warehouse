@@ -14,6 +14,8 @@ builder.Services.AddSingleton(new DatabaseService(connectionString));
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IItemRepository, ItemRepository>();
+builder.Services.AddTransient<IOrderRepository, OrderRepository>();
+builder.Services.AddTransient<IAnalyticsRepository, AnalyticsRepository>();
 
 // MVC
 builder.Services.AddControllersWithViews();
